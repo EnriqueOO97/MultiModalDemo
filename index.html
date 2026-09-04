@@ -1,20 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MultiModal VC — Demo</title>
-  <style>
-    body { max-width: 900px; margin: 2rem auto; padding: 0 1rem;
-           font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; }
-    table { border-collapse: collapse; width: 100%; margin: 1.5rem 0; }
-    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-    th { background: #f4f4f4; }
-    audio { width: 220px; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TITLE PLACEHOLDER — Audio Samples</title>
+<style>
+  :root { --border: #dcdcdc; --head-bg: #f5f5f5; --muted: #666; }
+  body {
+    max-width: 1200px; margin: 2.5rem auto; padding: 0 1.25rem;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    line-height: 1.65; color: #1a1a1a;
+  }
+  h1 { font-size: 1.9rem; margin-bottom: .25rem; }
+  .subtitle { color: var(--muted); margin-top: 0; }
+  figure { margin: 2rem 0; text-align: center; }
+  figure img { max-width: 100%; height: auto; border: 1px solid var(--border); }
+  figcaption { color: var(--muted); font-size: .9rem; margin-top: .6rem; }
+
+  .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+  table { border-collapse: collapse; width: 100%; min-width: 900px; }
+  th, td { border: 1px solid var(--border); padding: 10px 8px; text-align: center; }
+  th { background: var(--head-bg); font-size: .88rem; font-weight: 600; }
+  td:first-child, th:first-child { text-align: left; white-space: nowrap; }
+  audio { width: 165px; vertical-align: middle; }
+  footer { margin-top: 3rem; color: var(--muted); font-size: .85rem;
+           border-top: 1px solid var(--border); padding-top: 1rem; }
+</style>
 </head>
 <body>
-  <h1>MultiModal VC — Demo</h1>
-  <p>Placeholder page. Content coming.</p>
+
+<!-- ============ 1. TITLE ============ -->
+<h1>TITLE PLACEHOLDER</h1>
+<p class="subtitle">Author names · Affiliation · Venue / year</p>
+
+<!-- ============ 2. PARAGRAPH ============ -->
+<p>
+  PARAGRAPH PLACEHOLDER. Replace this with a short description of the work —
+  two to four sentences is the usual length for a demo page. Say what the
+  problem is, what the method does, and what the listener should notice in
+  the samples below.
+</p>
+
+<!-- ============ 3. IMAGE ============ -->
+<figure>
+  <img src="images/figure1.png" alt="System overview diagram">
+  <figcaption>Figure 1. CAPTION PLACEHOLDER.</figcaption>
+</figure>
+
+<!-- ============ 4. AUDIO SAMPLES ============ -->
+<h2>Audio samples</h2>
+<p>
+  SAMPLES INTRO PLACEHOLDER — e.g. one sentence on which speakers or
+  utterances are shown, and what to listen for.
+</p>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Utterance</th>
+        <th>Pathological audio</th>
+        <th>Healthy audio</th>
+        <th>Audio-visual<br>duration prediction</th>
+        <th>Audio-visual<br>teacher forcing</th>
+        <th>Audio-only<br>duration prediction</th>
+        <th>Audio-only<br>teacher forcing</th>
+      </tr>
+    </thead>
+    <tbody id="samples"></tbody>
+  </table>
+</div>
+
+<footer>
+  Page source: <a href="https://github.com/EnriqueOO97/MultiModalDemo">github.com/EnriqueOO97/MultiModalDemo</a>
+</footer>
+
+<script>
+// ─────────────────────────────────────────────────────────────────────
+// THE ONLY THING YOU EDIT HERE.
+//
+// One entry per row. `id` is the filename prefix, `label` is what shows
+// in the first column. Files are expected in audio/ as:
+//
+//   audio/<id>_patho.wav     audio/<id>_healthy.wav
+//   audio/<id>_av_dp.wav     audio/<id>_av_tf.wav
+//   audio/<id>_ao_dp.wav     audio/<id>_ao_tf.wav
+//
+// Add a row by adding a line. Delete a row by deleting a line.
+// ─────────────────────────────────────────────────────────────────────
+const SAMPLES = [
+  { id: "s01", label: "Sample 1" },
+  { id: "s02", label: "Sample 2" },
+  { id: "s03", label: "Sample 3" },
+];
+
+const COLUMNS = ["patho", "healthy", "av_dp", "av_tf", "ao_dp", "ao_tf"];
+const EXT = "wav";   // change to "mp3" if you convert the files
+
+document.getElementById("samples").innerHTML = SAMPLES.map(s =>
+  "<tr><td>" + s.label + "</td>" +
+  COLUMNS.map(c =>
+    '<td><audio controls preload="none" src="audio/' +
+    s.id + "_" + c + "." + EXT + '"></audio></td>'
+  ).join("") +
+  "</tr>"
+).join("");
+</script>
+
 </body>
 </html>
