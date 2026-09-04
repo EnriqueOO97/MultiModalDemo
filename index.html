@@ -86,9 +86,6 @@
   .notes b { font-weight: 700; }
 
   /* ---------- samples table ---------- */
-  .samples th:first-child, .samples td:first-child { width: 15%; text-align: left; }
-  .samples td:first-child { font-size: .8rem; line-height: 1.35; }
-  .samples .utt { color: var(--muted); font-size: .92em; }
   .samples audio { width: 100%; min-width: 0; height: 34px; vertical-align: middle; }
 
   footer {
@@ -212,7 +209,6 @@
   <table class="samples">
     <thead>
       <tr>
-        <th>Condition &rarr; target</th>
         <th>Pathological audio</th>
         <th>Healthy audio</th>
         <th>Audio-visual<br>duration prediction</th>
@@ -231,25 +227,24 @@
 
 <script>
 // ─────────────────────────────────────────────────────────────────────
-// One entry per row. `id` is the exact filename stem in audio/.
-// Each row expects six files:
-//   <id>-pathological.wav        <id>-healthy.wav
-//   <id>-pred-AV-dur-pred.wav    <id>-pred-AV-teach-forc.wav
-//   <id>-pred-AO-dur-pred.wav    <id>-pred-AO-teach-forc.wav
+// One filename stem per row. Each stem expects six files in audio/:
+//   <stem>-pathological.wav        <stem>-healthy.wav
+//   <stem>-pred-AV-dur-pred.wav    <stem>-pred-AV-teach-forc.wav
+//   <stem>-pred-AO-dur-pred.wav    <stem>-pred-AO-teach-forc.wav
 // ─────────────────────────────────────────────────────────────────────
 const SAMPLES = [
-  { id: "BM-HE0010common-phrases_0004",  cond: "BM", target: "HE0010",  utt: "common-phrases 0004" },
-  { id: "BM-HE0010common-phrases_0011",  cond: "BM", target: "HE0010",  utt: "common-phrases 0011" },
-  { id: "BM-PS0018common-dialogs_0018",  cond: "BM", target: "PS0018",  utt: "common-dialogs 0018" },
-  { id: "CO-IS0019shortstories_0066",    cond: "CO", target: "IS0019",  utt: "shortstories 0066" },
-  { id: "CO-MMY0012common-phrases_0012", cond: "CO", target: "MMY0012", utt: "common-phrases 0012" },
-  { id: "CO-MMY0012common-phrases_0032", cond: "CO", target: "MMY0012", utt: "common-phrases 0032" },
-  { id: "FG-HE0010common-phrases_0045",  cond: "FG", target: "HE0010",  utt: "common-phrases 0045" },
-  { id: "FG-RW0017shortstories_0034",    cond: "FG", target: "RW0017",  utt: "shortstories 0034" },
-  { id: "MP-HE0010shortstories_0029",    cond: "MP", target: "HE0010",  utt: "shortstories 0029" },
-  { id: "MP-IS0019common-phrases_0024",  cond: "MP", target: "IS0019",  utt: "common-phrases 0024" },
-  { id: "PA-HE0010common-phrases_0026",  cond: "PA", target: "HE0010",  utt: "common-phrases 0026" },
-  { id: "PA-HE0010common-phrases_0081",  cond: "PA", target: "HE0010",  utt: "common-phrases 0081" },
+  "BM-HE0010common-phrases_0004",
+  "BM-HE0010common-phrases_0011",
+  "BM-PS0018common-dialogs_0018",
+  "CO-IS0019shortstories_0066",
+  "CO-MMY0012common-phrases_0012",
+  "CO-MMY0012common-phrases_0032",
+  "FG-HE0010common-phrases_0045",
+  "FG-RW0017shortstories_0034",
+  "MP-HE0010shortstories_0029",
+  "MP-IS0019common-phrases_0024",
+  "PA-HE0010common-phrases_0026",
+  "PA-HE0010common-phrases_0081",
 ];
 
 const SUFFIXES = [
@@ -259,10 +254,9 @@ const SUFFIXES = [
 ];
 
 document.getElementById("samples").innerHTML = SAMPLES.map(s =>
-  "<tr><td><b>" + s.cond + " &rarr; " + s.target + "</b>" +
-  '<div class="utt">' + s.utt + "</div></td>" +
+  "<tr>" +
   SUFFIXES.map(x =>
-    '<td><audio controls preload="none" src="audio/' + s.id + x + '.wav"></audio></td>'
+    '<td><audio controls preload="none" src="audio/' + s + x + '.wav"></audio></td>'
   ).join("") +
   "</tr>"
 ).join("");
