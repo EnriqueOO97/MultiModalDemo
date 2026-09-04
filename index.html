@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --accent: #5b2be0;        /* purple used for emails / links */
+    --accent: #5b2be0;
     --ink: #1a1a1a;
     --muted: #666;
     --border: #dcdcdc;
@@ -17,7 +17,7 @@
   }
   * { box-sizing: border-box; }
   body {
-    max-width: 1150px; margin: 2.5rem auto; padding: 0 1.25rem;
+    max-width: 1600px; margin: 2.5rem auto; padding: 0 1.5rem;
     font-family: "Roboto Slab", Georgia, serif;
     font-weight: 300; line-height: 1.65; color: var(--ink);
   }
@@ -25,7 +25,7 @@
   /* ---------- title block ---------- */
   header { text-align: center; }
   h1 {
-    font-weight: 400; font-size: clamp(1.5rem, 3.4vw, 2.5rem);
+    font-weight: 400; font-size: clamp(1.5rem, 3vw, 2.5rem);
     line-height: 1.25; margin: 0 0 1.4rem; letter-spacing: -0.01em;
   }
   .authors {
@@ -42,33 +42,54 @@
   .author a:hover { text-decoration: underline; }
   .affil {
     font-size: .78rem; font-weight: 300; line-height: 1.6;
-    color: var(--ink); margin: 0 auto; max-width: 780px;
+    margin: 0 auto; max-width: 820px;
   }
   .affil sup { font-size: .78em; }
   hr.rule { border: 0; border-top: 1px solid var(--border); margin: 2.2rem 0; }
 
   /* ---------- body ---------- */
   h2 {
-    font-weight: 400; font-size: 1.35rem;
-    margin: 2.5rem 0 .8rem; padding-bottom: .35rem;
+    font-weight: 500; font-size: 1.3rem; color: var(--accent);
+    text-transform: uppercase; letter-spacing: .02em;
+    margin: 2.8rem 0 .9rem; padding-bottom: .35rem;
     border-bottom: 2px solid var(--accent);
   }
-  .lead { font-size: 1.05rem; max-width: 900px; margin: 0 auto; text-align: center; }
+  section > p { text-align: justify; hyphens: auto; }
 
   figure { margin: 2.2rem 0; text-align: center; }
   figure img { max-width: 100%; height: auto; }
   figcaption { color: var(--muted); font-size: .85rem; margin-top: .7rem; }
 
-  /* ---------- samples table ---------- */
-  .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
-  table { border-collapse: collapse; width: 100%; min-width: 980px; }
-  th, td { border: 1px solid var(--border); padding: 10px 8px; text-align: center; }
+  /* ---------- tables ---------- */
+  table {
+    border-collapse: collapse; width: 100%;
+    table-layout: fixed; margin: 1.2rem 0;
+  }
+  th, td {
+    border: 1px solid var(--border); padding: 9px 6px;
+    text-align: center; overflow-wrap: break-word;
+  }
   th {
-    background: var(--head-bg); font-size: .84rem;
+    background: var(--head-bg); font-size: .85rem;
     font-weight: 500; line-height: 1.35;
   }
-  td:first-child, th:first-child { text-align: left; white-space: nowrap; }
-  audio { width: 165px; vertical-align: middle; }
+  td { font-size: .9rem; }
+  .results td:first-child, .results th:first-child { text-align: left; }
+  .results tbody tr:first-child td { font-weight: 700; }
+
+  .notes {
+    font-size: .82rem; line-height: 1.55; color: var(--ink);
+    border: 1px solid var(--accent); border-radius: 3px;
+    padding: .7rem 1.1rem .7rem 2rem; margin: 0;
+  }
+  .notes li { margin: .2rem 0; }
+  .notes b { font-weight: 700; }
+
+  /* ---------- samples table ---------- */
+  .samples th:first-child, .samples td:first-child { width: 15%; text-align: left; }
+  .samples td:first-child { font-size: .8rem; line-height: 1.35; }
+  .samples .utt { color: var(--muted); font-size: .92em; }
+  .samples audio { width: 100%; min-width: 0; height: 34px; vertical-align: middle; }
 
   footer {
     margin-top: 3.5rem; padding-top: 1rem; border-top: 1px solid var(--border);
@@ -117,29 +138,81 @@
 <hr class="rule">
 
 <!-- ============ INTRODUCTION ============ -->
-<p class="lead">
-  Pathological speech can be unintelligible, harsh and erratic, however lip and
-  mouth movement remain largely intact, offering cues that can support speech
-  rehabilitation.
-</p>
+<section>
+  <h2>Introduction</h2>
+  <p>
+    Pathological speech can be unintelligible, harsh and erratic, however lip and
+    mouth movement remain largely intact, offering cues that can support speech
+    rehabilitation.
+  </p>
 
-<figure>
-  <img src="images/architecture.svg" alt="System architecture">
-  <figcaption>Figure 1. CAPTION PLACEHOLDER.</figcaption>
-</figure>
+  <figure>
+    <img src="images/architecture.svg" alt="Multi-modal approach for pathological speech rehabilitation">
+    <figcaption>Multi-modal approach for pathological speech rehabilitation.</figcaption>
+  </figure>
+</section>
 
-<!-- ============ AUDIO SAMPLES ============ -->
-<h2>Audio samples</h2>
-<p>
-  SAMPLES INTRO PLACEHOLDER — e.g. one sentence on which speakers or
-  utterances are shown, and what to listen for.
-</p>
+<!-- ============ RESULTS ============ -->
+<section>
+  <h2>Results on test split for different inference modes</h2>
 
-<div class="table-wrap">
-  <table>
+  <table class="results">
     <thead>
       <tr>
-        <th>Utterance</th>
+        <th>Inference mode</th>
+        <th>SIM &uarr;</th>
+        <th>DNSMOS &uarr;</th>
+        <th>UTMOS &uarr;</th>
+        <th>WER (corpus) &darr;</th>
+        <th>CER (corpus) &darr;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>AV &middot; dur-pred</td>
+        <td>0.703 &plusmn; 0.170</td><td>2.825 &plusmn; 0.389</td><td>3.244 &plusmn; 0.337</td>
+        <td>0.121</td><td>0.060</td>
+      </tr>
+      <tr>
+        <td>AV &middot; teach-forc</td>
+        <td>0.661 &plusmn; 0.170</td><td>2.669 &plusmn; 0.456</td><td>2.404 &plusmn; 0.512</td>
+        <td>0.551</td><td>0.374</td>
+      </tr>
+      <tr>
+        <td>AO &middot; dur-pred</td>
+        <td>0.691 &plusmn; 0.176</td><td>2.792 &plusmn; 0.386</td><td>3.193 &plusmn; 0.373</td>
+        <td>0.182</td><td>0.096</td>
+      </tr>
+      <tr>
+        <td>AO &middot; teach-forc</td>
+        <td>0.647 &plusmn; 0.176</td><td>2.627 &plusmn; 0.462</td><td>2.365 &plusmn; 0.540</td>
+        <td>0.807</td><td>0.548</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ul class="notes">
+    <li><b>AV</b> &rarr; audio-visual, <b>AO</b> &rarr; audio-only, <b>dur-pred</b> &rarr; duration
+        prediction enabled, <b>teach-forc</b> &rarr; output length fixed to input length;
+        results on test split including 2 held out pathological speakers</li>
+    <li><b>SIM</b> speaker similarity &middot; <b>DNSMOS / UTMOS</b> predicted quality
+        (higher is better) &middot; <b>WER / CER</b> word / character error rate
+        (lower is better)</li>
+  </ul>
+</section>
+
+<!-- ============ AUDIO SAMPLES ============ -->
+<section>
+  <h2>Audio samples</h2>
+  <p>
+    Random samples from the test split, for different pathological conditions and
+    5 different targets.
+  </p>
+
+  <table class="samples">
+    <thead>
+      <tr>
+        <th>Condition &rarr; target</th>
         <th>Pathological audio</th>
         <th>Healthy audio</th>
         <th>Audio-visual<br>duration prediction</th>
@@ -150,7 +223,7 @@
     </thead>
     <tbody id="samples"></tbody>
   </table>
-</div>
+</section>
 
 <footer>
   <a href="https://github.com/EnriqueOO97/MultiModalDemo">github.com/EnriqueOO97/MultiModalDemo</a>
@@ -158,29 +231,38 @@
 
 <script>
 // ─────────────────────────────────────────────────────────────────────
-// THE ONLY THING YOU EDIT HERE.
-//
-// One entry per row. `id` is the filename prefix, `label` shows in the
-// first column. Files are expected in audio/ as:
-//
-//   audio/<id>_patho.wav     audio/<id>_healthy.wav
-//   audio/<id>_av_dp.wav     audio/<id>_av_tf.wav
-//   audio/<id>_ao_dp.wav     audio/<id>_ao_tf.wav
+// One entry per row. `id` is the exact filename stem in audio/.
+// Each row expects six files:
+//   <id>-pathological.wav        <id>-healthy.wav
+//   <id>-pred-AV-dur-pred.wav    <id>-pred-AV-teach-forc.wav
+//   <id>-pred-AO-dur-pred.wav    <id>-pred-AO-teach-forc.wav
 // ─────────────────────────────────────────────────────────────────────
 const SAMPLES = [
-  { id: "s01", label: "Sample 1" },
-  { id: "s02", label: "Sample 2" },
-  { id: "s03", label: "Sample 3" },
+  { id: "BM-HE0010common-phrases_0004",  cond: "BM", target: "HE0010",  utt: "common-phrases 0004" },
+  { id: "BM-HE0010common-phrases_0011",  cond: "BM", target: "HE0010",  utt: "common-phrases 0011" },
+  { id: "BM-PS0018common-dialogs_0018",  cond: "BM", target: "PS0018",  utt: "common-dialogs 0018" },
+  { id: "CO-IS0019shortstories_0066",    cond: "CO", target: "IS0019",  utt: "shortstories 0066" },
+  { id: "CO-MMY0012common-phrases_0012", cond: "CO", target: "MMY0012", utt: "common-phrases 0012" },
+  { id: "CO-MMY0012common-phrases_0032", cond: "CO", target: "MMY0012", utt: "common-phrases 0032" },
+  { id: "FG-HE0010common-phrases_0045",  cond: "FG", target: "HE0010",  utt: "common-phrases 0045" },
+  { id: "FG-RW0017shortstories_0034",    cond: "FG", target: "RW0017",  utt: "shortstories 0034" },
+  { id: "MP-HE0010shortstories_0029",    cond: "MP", target: "HE0010",  utt: "shortstories 0029" },
+  { id: "MP-IS0019common-phrases_0024",  cond: "MP", target: "IS0019",  utt: "common-phrases 0024" },
+  { id: "PA-HE0010common-phrases_0026",  cond: "PA", target: "HE0010",  utt: "common-phrases 0026" },
+  { id: "PA-HE0010common-phrases_0081",  cond: "PA", target: "HE0010",  utt: "common-phrases 0081" },
 ];
 
-const COLUMNS = ["patho", "healthy", "av_dp", "av_tf", "ao_dp", "ao_tf"];
-const EXT = "wav";   // change to "mp3" if you convert the files
+const SUFFIXES = [
+  "-pathological", "-healthy",
+  "-pred-AV-dur-pred", "-pred-AV-teach-forc",
+  "-pred-AO-dur-pred", "-pred-AO-teach-forc",
+];
 
 document.getElementById("samples").innerHTML = SAMPLES.map(s =>
-  "<tr><td>" + s.label + "</td>" +
-  COLUMNS.map(c =>
-    '<td><audio controls preload="none" src="audio/' +
-    s.id + "_" + c + "." + EXT + '"></audio></td>'
+  "<tr><td><b>" + s.cond + " &rarr; " + s.target + "</b>" +
+  '<div class="utt">' + s.utt + "</div></td>" +
+  SUFFIXES.map(x =>
+    '<td><audio controls preload="none" src="audio/' + s.id + x + '.wav"></audio></td>'
   ).join("") +
   "</tr>"
 ).join("");
