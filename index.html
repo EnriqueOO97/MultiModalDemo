@@ -3,51 +3,132 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TITLE PLACEHOLDER — Audio Samples</title>
+<title>Multi-ModaL Voice Conversion for Pathological Speech</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
-  :root { --border: #dcdcdc; --head-bg: #f5f5f5; --muted: #666; }
-  body {
-    max-width: 1200px; margin: 2.5rem auto; padding: 0 1.25rem;
-    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-    line-height: 1.65; color: #1a1a1a;
+  :root {
+    --accent: #5b2be0;        /* purple used for emails / links */
+    --ink: #1a1a1a;
+    --muted: #666;
+    --border: #dcdcdc;
+    --head-bg: #f5f5f5;
   }
-  h1 { font-size: 1.9rem; margin-bottom: .25rem; }
-  .subtitle { color: var(--muted); margin-top: 0; }
-  figure { margin: 2rem 0; text-align: center; }
-  figure img { max-width: 100%; height: auto; border: 1px solid var(--border); }
-  figcaption { color: var(--muted); font-size: .9rem; margin-top: .6rem; }
+  * { box-sizing: border-box; }
+  body {
+    max-width: 1150px; margin: 2.5rem auto; padding: 0 1.25rem;
+    font-family: "Roboto Slab", Georgia, serif;
+    font-weight: 300; line-height: 1.65; color: var(--ink);
+  }
 
+  /* ---------- title block ---------- */
+  header { text-align: center; }
+  h1 {
+    font-weight: 400; font-size: clamp(1.5rem, 3.4vw, 2.5rem);
+    line-height: 1.25; margin: 0 0 1.4rem; letter-spacing: -0.01em;
+  }
+  .authors {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: .4rem 2.6rem; margin-bottom: 1.4rem;
+  }
+  .author { line-height: 1.35; }
+  .author .name { font-size: 1rem; font-weight: 400; }
+  .author .name sup { font-size: .62em; font-weight: 400; }
+  .author a {
+    display: block; font-size: .78rem; font-weight: 500;
+    color: var(--accent); text-decoration: none;
+  }
+  .author a:hover { text-decoration: underline; }
+  .affil {
+    font-size: .78rem; font-weight: 300; line-height: 1.6;
+    color: var(--ink); margin: 0 auto; max-width: 780px;
+  }
+  .affil sup { font-size: .78em; }
+  hr.rule { border: 0; border-top: 1px solid var(--border); margin: 2.2rem 0; }
+
+  /* ---------- body ---------- */
+  h2 {
+    font-weight: 400; font-size: 1.35rem;
+    margin: 2.5rem 0 .8rem; padding-bottom: .35rem;
+    border-bottom: 2px solid var(--accent);
+  }
+  .lead { font-size: 1.05rem; max-width: 900px; margin: 0 auto; text-align: center; }
+
+  figure { margin: 2.2rem 0; text-align: center; }
+  figure img { max-width: 100%; height: auto; }
+  figcaption { color: var(--muted); font-size: .85rem; margin-top: .7rem; }
+
+  /* ---------- samples table ---------- */
   .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
-  table { border-collapse: collapse; width: 100%; min-width: 900px; }
+  table { border-collapse: collapse; width: 100%; min-width: 980px; }
   th, td { border: 1px solid var(--border); padding: 10px 8px; text-align: center; }
-  th { background: var(--head-bg); font-size: .88rem; font-weight: 600; }
+  th {
+    background: var(--head-bg); font-size: .84rem;
+    font-weight: 500; line-height: 1.35;
+  }
   td:first-child, th:first-child { text-align: left; white-space: nowrap; }
   audio { width: 165px; vertical-align: middle; }
-  footer { margin-top: 3rem; color: var(--muted); font-size: .85rem;
-           border-top: 1px solid var(--border); padding-top: 1rem; }
+
+  footer {
+    margin-top: 3.5rem; padding-top: 1rem; border-top: 1px solid var(--border);
+    color: var(--muted); font-size: .82rem; text-align: center;
+  }
+  footer a { color: var(--accent); }
 </style>
 </head>
 <body>
 
-<!-- ============ 1. TITLE ============ -->
-<h1>TITLE PLACEHOLDER</h1>
-<p class="subtitle">Author names · Affiliation · Venue / year</p>
+<!-- ============ TITLE + AUTHORS ============ -->
+<header>
+  <h1>Multi-ModaL Voice Conversion for Pathological Speech:<br>
+      Leveraging Visual Articulation to Restore a Healthy Voice</h1>
 
-<!-- ============ 2. PARAGRAPH ============ -->
-<p>
-  PARAGRAPH PLACEHOLDER. Replace this with a short description of the work —
-  two to four sentences is the usual length for a demo page. Say what the
-  problem is, what the method does, and what the listener should notice in
-  the samples below.
+  <div class="authors">
+    <div class="author">
+      <div class="name">Enrique Orozco-Olivares<sup>1,3</sup></div>
+      <a href="mailto:orozcoolivares@tugraz.at">orozcoolivares@tugraz.at</a>
+    </div>
+    <div class="author">
+      <div class="name">Benedikt Mayrhofer<sup>1,3</sup></div>
+      <a href="mailto:benedikt.mayrhofer@tugraz.at">benedikt.mayrhofer@tugraz.at</a>
+    </div>
+    <div class="author">
+      <div class="name">Franz Pernkopf<sup>1</sup></div>
+      <a href="mailto:pernkopf@tugraz.at">pernkopf@tugraz.at</a>
+    </div>
+    <div class="author">
+      <div class="name">Philipp Aichinger<sup>2,3</sup></div>
+      <a href="mailto:philipp.aichinger@meduniwien.ac.at">philipp.aichinger@meduniwien.ac.at</a>
+    </div>
+    <div class="author">
+      <div class="name">Martin Hagmüller<sup>1,3</sup></div>
+      <a href="mailto:hagmueller@tugraz.at">hagmueller@tugraz.at</a>
+    </div>
+  </div>
+
+  <p class="affil">
+    <sup>1</sup>Signal Processing and Speech Communication Laboratory, Graz University of Technology<br>
+    <sup>2</sup>Department of Otorhinolaryngology, Div. Phoniatrics-Logopedics, Medical University of Vienna<br>
+    <sup>3</sup>Comprehensive Centre for AI in Medicine, Medical University of Vienna
+  </p>
+</header>
+
+<hr class="rule">
+
+<!-- ============ INTRODUCTION ============ -->
+<p class="lead">
+  Pathological speech can be unintelligible, harsh and erratic, however lip and
+  mouth movement remain largely intact, offering cues that can support speech
+  rehabilitation.
 </p>
 
-<!-- ============ 3. IMAGE ============ -->
 <figure>
-  <img src="images/figure1.png" alt="System overview diagram">
+  <img src="images/architecture.svg" alt="System architecture">
   <figcaption>Figure 1. CAPTION PLACEHOLDER.</figcaption>
 </figure>
 
-<!-- ============ 4. AUDIO SAMPLES ============ -->
+<!-- ============ AUDIO SAMPLES ============ -->
 <h2>Audio samples</h2>
 <p>
   SAMPLES INTRO PLACEHOLDER — e.g. one sentence on which speakers or
@@ -72,21 +153,19 @@
 </div>
 
 <footer>
-  Page source: <a href="https://github.com/EnriqueOO97/MultiModalDemo">github.com/EnriqueOO97/MultiModalDemo</a>
+  <a href="https://github.com/EnriqueOO97/MultiModalDemo">github.com/EnriqueOO97/MultiModalDemo</a>
 </footer>
 
 <script>
 // ─────────────────────────────────────────────────────────────────────
 // THE ONLY THING YOU EDIT HERE.
 //
-// One entry per row. `id` is the filename prefix, `label` is what shows
-// in the first column. Files are expected in audio/ as:
+// One entry per row. `id` is the filename prefix, `label` shows in the
+// first column. Files are expected in audio/ as:
 //
 //   audio/<id>_patho.wav     audio/<id>_healthy.wav
 //   audio/<id>_av_dp.wav     audio/<id>_av_tf.wav
 //   audio/<id>_ao_dp.wav     audio/<id>_ao_tf.wav
-//
-// Add a row by adding a line. Delete a row by deleting a line.
 // ─────────────────────────────────────────────────────────────────────
 const SAMPLES = [
   { id: "s01", label: "Sample 1" },
