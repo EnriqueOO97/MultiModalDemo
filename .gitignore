@@ -1,0 +1,2 @@
+# raw pathological audio stays local; only anonymized versions are published
+audio/*-pathological.wav
