@@ -75,7 +75,6 @@
   }
   td { font-size: .9rem; }
   .results td:first-child, .results th:first-child { text-align: left; }
-  .results tbody tr:first-child td { font-weight: 700; }
 
   .notes {
     font-size: .82rem; line-height: 1.55; color: var(--ink);
@@ -171,7 +170,7 @@
         <th>WER</th>
         <th>CER</th>
         <th>SIM</th>
-        <th>DNSMOS</th>
+        <th>DNSMOS Pro</th>
         <th>UTMOS</th>
       </tr>
     </thead>
@@ -202,7 +201,7 @@
   <ul class="notes">
     <li>Ablation on inference modes, in-domain set. <b>AV</b> is audio-visual input,
         <b>A</b> audio-only.</li>
-    <li><b>SIM</b> speaker similarity &middot; <b>DNSMOS / UTMOS</b> predicted quality
+    <li><b>SIM</b> speaker similarity &middot; <b>DNSMOS Pro / UTMOS</b> predicted quality
         (higher is better) &middot; <b>WER / CER</b> word / character error rate
         (lower is better)</li>
   </ul>
@@ -227,7 +226,12 @@
 <!-- ============ AUDIO SAMPLES ============ -->
 <section>
   <h2>Audio samples</h2>
-  <p>Samples from the audio-visual input with duration prediction enabled.</p>
+  <p>
+    Samples from the audio-visual input with duration prediction enabled.
+    To protect speaker privacy, the pathological recordings are anonymized
+    (formant ratio 0.8, pitch lowered by 4 semitones) while preserving the
+    pathological characteristics.
+  </p>
 
   <table class="samples">
     <thead>
