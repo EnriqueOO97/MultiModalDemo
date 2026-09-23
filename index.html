@@ -128,7 +128,7 @@
 
   <p class="affil">
     <sup>1</sup>Signal Processing and Speech Communication Laboratory, Graz University of Technology<br>
-    <sup>2</sup>Department of Otorhinolaryngology, Div. Phoniatrics-Logopedics, Medical University of Vienna<br>
+    <sup>2</sup>Dept. of Otolaryngology, Head and Neck Surgery, Div. Phoniatrics-Logopedics, Speech &amp; Hearing Sci. Lab, Medical University of Vienna<br>
     <sup>3</sup>Comprehensive Centre for AI in Medicine, Medical University of Vienna
   </p>
 </header>
@@ -154,54 +154,80 @@
 <section>
   <h2>Results on test split for different inference modes</h2>
 
+  <p>
+    We evaluate the model under four inference configurations: audio-visual
+    against audio-only input, each with the output length either predicted
+    by the duration module, which implicitly sets the speaking rate, or
+    teacher forced to the length of the input. Audio-visual input with
+    duration prediction achieves the lowest corpus WER, 13.4 percentage
+    points below the pathological reference.
+  </p>
+
   <table class="results">
     <thead>
       <tr>
-        <th>Inference mode</th>
-        <th>SIM &uarr;</th>
-        <th>DNSMOS &uarr;</th>
-        <th>UTMOS &uarr;</th>
-        <th>WER (corpus) &darr;</th>
-        <th>CER (corpus) &darr;</th>
+        <th>Input</th>
+        <th>Duration</th>
+        <th>WER</th>
+        <th>CER</th>
+        <th>SIM</th>
+        <th>DNSMOS</th>
+        <th>UTMOS</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>AV &middot; dur-pred</td>
-        <td>0.703 &plusmn; 0.170</td><td>2.825 &plusmn; 0.389</td><td>3.244 &plusmn; 0.337</td>
-        <td>0.121</td><td>0.060</td>
+        <td>AV</td><td>predicted</td>
+        <td><b>0.180</b></td><td><b>0.088</b></td><td>0.64 &plusmn; 0.18</td>
+        <td>2.80 &plusmn; 0.40</td><td><b>3.33 &plusmn; 0.31</b></td>
       </tr>
       <tr>
-        <td>AV &middot; teach-forc</td>
-        <td>0.661 &plusmn; 0.170</td><td>2.669 &plusmn; 0.456</td><td>2.404 &plusmn; 0.512</td>
-        <td>0.551</td><td>0.374</td>
+        <td>AV</td><td>teacher forced</td>
+        <td>0.222</td><td>0.148</td><td><b>0.66 &plusmn; 0.15</b></td>
+        <td><b>2.81 &plusmn; 0.46</b></td><td>2.90 &plusmn; 0.41</td>
       </tr>
       <tr>
-        <td>AO &middot; dur-pred</td>
-        <td>0.691 &plusmn; 0.176</td><td>2.792 &plusmn; 0.386</td><td>3.193 &plusmn; 0.373</td>
-        <td>0.182</td><td>0.096</td>
+        <td>A</td><td>predicted</td>
+        <td>0.228</td><td>0.121</td><td>0.63 &plusmn; 0.17</td>
+        <td>2.80 &plusmn; 0.41</td><td>3.31 &plusmn; 0.34</td>
       </tr>
       <tr>
-        <td>AO &middot; teach-forc</td>
-        <td>0.647 &plusmn; 0.176</td><td>2.627 &plusmn; 0.462</td><td>2.365 &plusmn; 0.540</td>
-        <td>0.807</td><td>0.548</td>
+        <td>A</td><td>teacher forced</td>
+        <td>0.317</td><td>0.193</td><td>0.65 &plusmn; 0.15</td>
+        <td>2.80 &plusmn; 0.46</td><td>2.90 &plusmn; 0.44</td>
       </tr>
     </tbody>
   </table>
 
   <ul class="notes">
-    <li><b>AV</b> &rarr; audio-visual, <b>AO</b> &rarr; audio-only, <b>dur-pred</b> &rarr; duration
-        prediction enabled, <b>teach-forc</b> &rarr; output length fixed to input length;
-        results on test split including 2 held out pathological speakers</li>
+    <li>Ablation on inference modes, in-domain set. <b>AV</b> is audio-visual input,
+        <b>A</b> audio-only.</li>
     <li><b>SIM</b> speaker similarity &middot; <b>DNSMOS / UTMOS</b> predicted quality
         (higher is better) &middot; <b>WER / CER</b> word / character error rate
         (lower is better)</li>
   </ul>
 </section>
 
+<!-- ============ NOISE ROBUSTNESS ============ -->
+<section>
+  <h2>Robustness to noise</h2>
+  <p>
+    The figure below shows corpus WER under babble noise added at decreasing SNR,
+    from clean input down to &minus;5&nbsp;dB, evaluated on the in-domain set.
+    Audio-visual input degrades gracefully, while audio-only input collapses
+    toward the unprocessed pathological speech as noise increases.
+  </p>
+
+  <figure>
+    <img src="images/wer_noise_sweep.png" alt="Corpus WER under decreasing SNR">
+    <figcaption>Corpus WER under decreasing SNR.</figcaption>
+  </figure>
+</section>
+
 <!-- ============ AUDIO SAMPLES ============ -->
 <section>
   <h2>Audio samples</h2>
+  <p>Samples from the audio-visual input with duration prediction enabled.</p>
 
   <table class="samples">
     <thead>
